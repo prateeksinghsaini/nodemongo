@@ -1,6 +1,8 @@
 const express = require("express");
 const userRoutes = require("./routes/userRoutes");
+const fileRoutes = require("./routes/fileRoutes");
 const connectDB = require("./config/db");
+const { setHeaders } = require("./middlewares/securityHeaders");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -18,14 +20,12 @@ const logger = (req, res, next) => {
 
 app.use(logger);
 app.use(middlewareFunction);
+app.use(setHeaders);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/users", userRoutes);
-
-app.get("/", (req, res) => {
-  res.send("Hey");
-});
+app.use("/", userRoutes);
+app.use("/file", fileRoutes);
 
 app.listen(PORT, () => console.log("Port active on " + PORT));
