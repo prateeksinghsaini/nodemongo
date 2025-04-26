@@ -1,11 +1,13 @@
+require("dotenv").config();
 const express = require("express");
 const userRoutes = require("./routes/userRoutes");
 const fileRoutes = require("./routes/fileRoutes");
+const authRoutes = require("./routes/authRoutes");
 const connectDB = require("./config/db");
 const { setHeaders } = require("./middlewares/securityHeaders");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 connectDB();
 
 const middlewareFunction = (req, res, next) => {
@@ -27,5 +29,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", userRoutes);
 app.use("/file", fileRoutes);
+app.use("/auth", authRoutes);
 
 app.listen(PORT, () => console.log("Port active on " + PORT));

@@ -3,6 +3,12 @@ const User = require("../modals/user");
 const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
+    if (!user)
+      return res.status(404).json({
+        status: "success",
+        message: "No user Found!",
+      });
+
     res.status(201).json({
       status: "success",
       user: {
@@ -11,7 +17,7 @@ const getUser = async (req, res) => {
         email: user.email,
       },
     });
-  } catch {
+  } catch (err) {
     res.status(500).send(err);
   }
 };

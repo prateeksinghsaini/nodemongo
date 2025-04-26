@@ -7,7 +7,7 @@ const connectDB = async () => {
     if (!dbURI) {
       throw new Error("MongoDB URI is not defined");
     }
-    // Connect to MongoDB (No need for useNewUrlParser and useUnifiedTopology)
+
     await mongoose.connect(dbURI);
     console.log("MongoDB connected successfully");
   } catch (error) {
