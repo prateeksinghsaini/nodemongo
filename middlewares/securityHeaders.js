@@ -3,7 +3,7 @@ function setHeaders(req, res, next) {
     "Content-Security-Policy",
     "default-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; media-src 'none'; frame-src 'none'; form-action 'self'; base-uri 'self'; sandbox allow-same-origin;"
   );
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5000/");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST");
   res.setHeader(
     "Access-Control-Allow-Headers",
