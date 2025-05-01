@@ -5,10 +5,12 @@ const fileRoutes = require("./routes/fileRoutes");
 const authRoutes = require("./routes/authRoutes");
 const connectDB = require("./config/db");
 const { setHeaders } = require("./middlewares/securityHeaders");
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT;
 connectDB();
+app.use(cors());
 
 const middlewareFunction = (req, res, next) => {
   console.log("Middleware ran");
